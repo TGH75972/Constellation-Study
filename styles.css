@@ -10,6 +10,7 @@ body {
     min-height: 100vh;
     overflow-y: scroll;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -23,6 +24,11 @@ body {
     background-color: #1a1a1a;
     box-sizing: border-box;
     border: 2px solid #ffdfba;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.02);
 }
 
 #canvas-container {
@@ -35,11 +41,12 @@ body {
     box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1);
     border: 2px solid #f5f5f5;
     overflow: hidden;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 #canvas-container:hover {
     background-color: #222222;
+    box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.2);
 }
 
 #constellationCanvas {
@@ -56,11 +63,12 @@ body {
     text-align: left;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     border: 2px solid #ffdfba;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 #info:hover {
     background-color: #333333;
+    transform: scale(1.01);
 }
 
 #constellationName {
@@ -69,6 +77,12 @@ body {
     color: #ffdfba;
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255, 223, 186, 0.5);
+    letter-spacing: 1px;
+    transition: letter-spacing 0.3s ease-in-out;
+}
+
+#constellationName:hover {
+    letter-spacing: 3px;
 }
 
 #constellationDescription {
@@ -77,6 +91,12 @@ body {
     color: #d3d3d3;
     line-height: 1.6;
     text-shadow: 0 0 5px rgba(211, 211, 211, 0.3);
+    transition: color 0.3s ease-in-out, line-height 0.3s ease-in-out;
+}
+
+#constellationDescription:hover {
+    color: #ffffff;
+    line-height: 1.8;
 }
 
 h1 {
@@ -84,6 +104,7 @@ h1 {
     text-shadow: 0 0 15px rgba(255, 223, 186, 0.5);
     font-size: 36px;
     margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .container h1 {
@@ -105,10 +126,13 @@ a {
     color: #ffdfba;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 223, 186, 0.5);
 }
 
 button {
@@ -120,23 +144,18 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 button:hover {
     background-color: #ffd699;
+    box-shadow: 0 0 10px rgba(255, 223, 186, 0.5);
+    transform: scale(1.05);
 }
 
 button:active {
     background-color: #ffcc99;
-}
-
-#info {
-    background-color: #222222;
-    padding: 30px;
-    border-radius: 15px;
-    border: 2px solid #ffdfba;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
 }
 
 @media (max-width: 1200px) {
@@ -214,6 +233,18 @@ button:active {
     }
 }
 
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #ffdfba, 0 0 10px #ffdfba, 0 0 20px #ffdfba;
+    }
+    50% {
+        text-shadow: 0 0 15px #ffdfba, 0 0 30px #ffdfba, 0 0 45px #ffdfba;
+    }
+    100% {
+        text-shadow: 0 0 5px #ffdfba, 0 0 10px #ffdfba, 0 0 20px #ffdfba;
+    }
+}
+
 .fade-in {
     animation: fadeIn 1s ease-in-out;
 }
@@ -222,10 +253,102 @@ button:active {
     animation: slideIn 1s ease-in-out;
 }
 
+.glow-text {
+    animation: glow 2s ease-in-out infinite;
+}
+
 .container {
     animation: fadeIn 1s ease-in-out;
 }
 
 #canvas-container {
     animation: slideIn 1s ease-in-out;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+ul li:hover {
+    background-color: #2a2a2a;
+    transform: scale(1.05);
+}
+
+.form-container {
+    background-color: #222222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ffdfba;
+    border-radius: 5px;
+    background-color: #333333;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container textarea:focus {
+    border-color: #ffd699;
+    background-color: #444444;
+}
+
+.form-container button {
+    background-color: #ffdfba;
+    color: #000000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.form-container button:hover {
+    background-color: #ffd699;
+}
+
+.form-container button:active {
+    background-color: #ffcc99;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111111;
+    border-top: 2px solid #ffdfba;
+    color: #d3d3d3;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+footer a {
+    color: #ffdfba;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer p {
+    margin: 0;
 }
